@@ -1,0 +1,7 @@
+{
+  "name": "Packet Rush",
+  "description": "A fast-paced puzzle game where you manage a network router directing data packets to their destinations.",
+  "install": "go build -o packet-rush .",
+  "run": "./packet-rush"
+}
+
