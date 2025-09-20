@@ -22,11 +22,6 @@ func (p Position) Equals(other Position) bool {
 	return p.X == other.X && p.Y == other.Y
 }
 
-// IsValid checks if the position is within the given bounds
-func (p Position) IsValid(width, height int) bool {
-	return p.X >= 0 && p.X < width && p.Y >= 0 && p.Y < height
-}
-
 // Direction vectors for movement
 var (
 	Up    = Position{X: 0, Y: -1}
@@ -34,36 +29,4 @@ var (
 	Left  = Position{X: -1, Y: 0}
 	Right = Position{X: 1, Y: 0}
 )
-
-// GetDirectionFromChar converts a character to a direction
-func GetDirectionFromChar(char rune) Position {
-	switch char {
-	case '^':
-		return Up
-	case 'v':
-		return Down
-	case '<':
-		return Left
-	case '>':
-		return Right
-	default:
-		return Position{0, 0}
-	}
-}
-
-// GetCharFromDirection converts a direction to a character
-func GetCharFromDirection(dir Position) rune {
-	switch dir {
-	case Up:
-		return '^'
-	case Down:
-		return 'v'
-	case Left:
-		return '<'
-	case Right:
-		return '>'
-	default:
-		return '?'
-	}
-}
 
