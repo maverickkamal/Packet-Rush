@@ -64,12 +64,10 @@ func (m *GameModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m.handleKeyInput(msg)
 
 	case TickMsg:
-		var _ TickMsg = msg
-		return m.handleGameTick()
+		return m.handleGameTick(msg)
 
 	case SpawnMsg:
-		var _ SpawnMsg = msg
-		return m.handlePacketSpawn()
+		return m.handlePacketSpawn(msg)
 
 	case tea.WindowSizeMsg:
 		return m, nil
@@ -84,7 +82,7 @@ func (m *GameModel) IsValidPosition(x, y int) bool {
 
 func (m *GameModel) GetCharAt(x, y int) rune {
 	if !m.IsValidPosition(x, y) {
-		return '#' 
+		return '#'
 	}
 	return rune(m.Grid[y][x])
 }

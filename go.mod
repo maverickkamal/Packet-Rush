@@ -1,10 +1,11 @@
-module github.com/your-username/packet-rush
+module github.com/maverickkamal/Packet-Rush
 
 go 1.25.1
 
+require github.com/charmbracelet/bubbletea v1.3.6
+
 require (
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
-	github.com/charmbracelet/bubbletea v1.3.6 // indirect
 	github.com/charmbracelet/colorprofile v0.2.3-0.20250311203215-f60798e515dc // indirect
 	github.com/charmbracelet/lipgloss v1.1.0 // indirect
 	github.com/charmbracelet/x/ansi v0.9.3 // indirect

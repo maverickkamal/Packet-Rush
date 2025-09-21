@@ -7,7 +7,6 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-
 func (m *GameModel) handleKeyInput(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	key := msg.String()
 
@@ -15,7 +14,7 @@ func (m *GameModel) handleKeyInput(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	case "ctrl+c", "q":
 		return m, tea.Quit
 
-	case " ": 
+	case " ":
 		m.Paused = !m.Paused
 		if !m.Paused && !m.GameOver && !m.LevelComplete {
 			return m, tea.Batch(
@@ -29,7 +28,7 @@ func (m *GameModel) handleKeyInput(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		}
 		return m, nil
 
-	case "r": 
+	case "r":
 		if m.GameOver {
 			m.RestartRequested = true
 			return m, nil
@@ -51,8 +50,7 @@ func (m *GameModel) handleKeyInput(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
-
-func (m *GameModel) handleGameTick() (tea.Model, tea.Cmd) {
+func (m *GameModel) handleGameTick(_ TickMsg) (tea.Model, tea.Cmd) {
 	// Don't process ticks if paused, game over, or level complete
 	if m.Paused || m.GameOver || m.LevelComplete {
 		return m, nil
@@ -69,7 +67,6 @@ func (m *GameModel) handleGameTick() (tea.Model, tea.Cmd) {
 	// Check game over conditions (after all processing)
 	m.checkGameOver()
 
-
 	m.TickSpeed = InitialTickSpeed - time.Duration(m.GameTime)*time.Millisecond
 	if m.TickSpeed < MinTickSpeed {
 		m.TickSpeed = MinTickSpeed
@@ -85,7 +82,7 @@ func (m *GameModel) handleGameTick() (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
-func (m *GameModel) handlePacketSpawn() (tea.Model, tea.Cmd) {
+func (m *GameModel) handlePacketSpawn(_ SpawnMsg) (tea.Model, tea.Cmd) {
 	if m.Paused || m.GameOver || m.LevelComplete {
 		return m, nil
 	}
